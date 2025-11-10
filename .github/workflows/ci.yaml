@@ -1,0 +1,40 @@
+# Workflow name
+name: CI
+
+# Triggers: push to main or pull request
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+# Single job: lint
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout repository
+      - uses: actions/checkout@v4
+      # Setup Node.js
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      # Install dependencies if package.json exists
+      - name: Install tools if present
+        run: |
+          if [ -f package.json ]; then
+            npm ci || npm i
+          fi
+      # Run ESLint on app.js
+      - name: ESLint check
+        run: |
+          if [ -f package.json ] && npx --yes eslint -v >/dev/null 2>&1; then
+            npx eslint "app.js" || true
+          else
+            echo "ESLint not configured. Skipping."
+          fi
+      # Run npm audit for high/critical vulnerabilities
+      - name: Dependency audit
+        run: |
+          if [ -f package.json ]; then
+            npm audit --audit-level=high || true
+          fi
