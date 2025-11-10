@@ -1,5 +1,7 @@
 # Habit Tracker app
 
+[![CI](https://github.com/sh4dowsun/habit-tracker/actions/workflows/ci.yaml/badge.svg)](https://github.com/sh4dowsun/habit-tracker/actions/workflows/ci.yaml)
+
 A single page app that lets you add habits, tick today, shows the last seven days and a live streak count. Data is stored locally in the browser using localStorage.
 
 ## Running locally
