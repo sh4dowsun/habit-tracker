@@ -2,88 +2,86 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Habit Tracker</title>
-  <link rel="stylesheet" href="styles.css">
-  <style> 
-    .btn:hover{
-        filter:brightness(1.05)
-    }
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Habit Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+    <style> 
+        .btn:hover{
+            filter:brightness(1.05)
+        }
 
-    .sr-only{
-        position:absolute;
-        height:1px;
-        width:1px;
-        overflow:hidden;
-        clip:rect(1px,1px,1px,1px)
-    }
-  </style>
+        .sr-only{
+            position:absolute;
+            height:1px;
+            width:1px;
+            overflow:hidden;
+            clip:rect(1px,1px,1px,1px)
+        }
+    </style>
 </head>
 
 <body>
-  <main style="max-width:980px;margin:0 auto;padding:20px;">
-    <header style="background:linear-gradient(135deg,#019dd5,#00bfff);color:#fff;padding:24px;border-radius:12px;">
-      <h1 style="margin:0 0 6px;">Habit Tracker</h1>
-      <p style="margin:0;">Add habits, tick your day, and keep your streaks going</p>
-    </header>
+    <main style="max-width:980px;margin:0 auto;padding:20px;">
+        <header style="background:linear-gradient(135deg,#019dd5,#00bfff);color:#fff;padding:24px;border-radius:12px;">
+            <h1 style="margin:0 0 6px;">Habit Tracker</h1>
+            <p style="margin:0;">Add habits, tick your day, and keep your streaks going</p>
+        </header>
 
-    <section style="background:#e8f9ff;border-left:6px solid #019dd5;padding:12px;border-radius:8px;margin:12px 0 16px;" aria-live="polite">
-      <strong>Tip:</strong> Click a day cell to toggle. Use Tab to focus, then Space or Enter to toggle.
-    </section>
+        <section style="background:#e8f9ff;border-left:6px solid #019dd5;padding:12px;border-radius:8px;margin:12px 0 16px;" aria-live="polite">
+            <strong>Tip:</strong> Click a day cell to toggle. Use Tab to focus, then Space or Enter to toggle.
+        </section>
 
-    <!-- Add habit form section -->
-    <section style="background:#fff;border-radius:12px;padding:18px;margin:12px 0;box-shadow:0 1px 2px rgba(0,0,0,.04),0 4px 12px rgba(0,0,0,.04);" aria-labelledby="add-title">
-      <h2 id="add-title" style="margin:0 0 8px;color:#0b3b58;">Add a habit</h2>
-      <form id="habit-form" style="display:flex;gap:8px;align-items:center;">
-        <label for="habit-name" class="sr-only">Habit name</label>
-        <input id="habit-name" name="habitName" type="text" required placeholder="e.g. Drink two litres of water" autocomplete="off"
-               style="flex:1;padding:10px 12px;border:1px solid #dbe7f0;border-radius:8px;outline:none;">
-        <button type="submit" class="btn" style="background:#019dd5;color:#fff;border:none;padding:10px 14px;border-radius:8px;cursor:pointer;">Add</button>
-      </form>
-    </section>
+        <!-- Add habit form section -->
+        <section style="background:#fff;border-radius:12px;padding:18px;margin:12px 0;box-shadow:0 1px 2px rgba(0,0,0,.04),0 4px 12px rgba(0,0,0,.04);" aria-labelledby="add-title">
+        <h2 id="add-title" style="margin:0 0 8px;color:#0b3b58;">Add a habit</h2>
+        <form id="habit-form" style="display:flex;gap:8px;align-items:center;">
+            <label for="habit-name" class="sr-only">Habit name</label>
+            <input id="habit-name" name="habitName" type="text" required placeholder="e.g. Drink two litres of water" autocomplete="off"
+                style="flex:1;padding:10px 12px;border:1px solid #dbe7f0;border-radius:8px;outline:none;">
+            <button type="submit" class="btn" style="background:#019dd5;color:#fff;border:none;padding:10px 14px;border-radius:8px;cursor:pointer;">Add</button>
+        </form>
+        </section>
 
-    <!-- Main tracker grid -->
-    <section style="background:#fff;border-radius:12px;padding:18px;margin:12px 0;box-shadow:0 1px 2px rgba(0,0,0,.04),0 4px 12px rgba(0,0,0,.04);" aria-labelledby="tracker-title">
-      <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;">
-        <h2 id="tracker-title" style="margin:0;color:#0b3b58;">This week</h2>
-        <div id="week-range" style="color:#66788a;"></div>
-      </div>
-      <div style="overflow-x:auto;margin-top:8px;">
-        <div style="display:grid;grid-template-columns:1.6fr repeat(7,.9fr) .8fr 1fr;align-items:center;border-bottom:1px solid #eef2f6;background:#f8fbfe;font-weight:600;">
-          <div style="padding:10px;color:#0b3b58;">Habit</div>
-          <div style="padding:10px;color:#0b3b58;">D-6</div>
-          <div style="padding:10px;color:#0b3b58;">D-5</div>
-          <div style="padding:10px;color:#0b3b58;">D-4</div>
-          <div style="padding:10px;color:#0b3b58;">D-3</div>
-          <div style="padding:10px;color:#0b3b58;">D-2</div>
-          <div style="padding:10px;color:#0b3b58;">Yesterday</div>
-          <div style="padding:10px;color:#0b3b58;">Today</div>
-          <div style="padding:10px;color:#0b3b58;">Streak</div>
-          <div style="padding:10px;color:#0b3b58;">Actions</div>
-        </div>
-        <div id="rows"></div>
-      </div>
-    </section>
+        <!-- Main tracker grid -->
+        <section style="background:#fff;border-radius:12px;padding:18px;margin:12px 0;box-shadow:0 1px 2px rgba(0,0,0,.04),0 4px 12px rgba(0,0,0,.04);" aria-labelledby="tracker-title">
+            <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;">
+                <h2 id="tracker-title" style="margin:0;color:#0b3b58;">This week</h2>
+                <div id="week-range" style="color:#66788a;"></div>
+            </div>
+            <div style="display:grid;grid-template-columns:1.6fr repeat(7,.9fr) .8fr 1fr;align-items:center;border-bottom:1px solid #eef2f6;background:#f8fbfe;font-weight:600;">
+                <div style="padding:10px;color:#0b3b58;">Habit</div>
+                <!-- offsets: -6 .. 0 = 7 days ending today -->
+                <div class="day-header" data-offset="-6" style="padding:10px;color:#0b3b58;">D-6</div>
+                <div class="day-header" data-offset="-5" style="padding:10px;color:#0b3b58;">D-5</div>
+                <div class="day-header" data-offset="-4" style="padding:10px;color:#0b3b58;">D-4</div>
+                <div class="day-header" data-offset="-3" style="padding:10px;color:#0b3b58;">D-3</div>
+                <div class="day-header" data-offset="-2" style="padding:10px;color:#0b3b58;">D-2</div>
+                <div class="day-header" data-offset="-1" style="padding:10px;color:#0b3b58;">Yesterday</div>
+                <div class="day-header" data-offset="0"  style="padding:10px;color:#0b3b58;">Today</div>
+                <div style="padding:10px;color:#0b3b58;">Streak</div>
+                <div style="padding:10px;color:#0b3b58;">Actions</div>
+            </div>
+        </section>
 
-    <!-- Data management -->
-    <section style="background:#fff;border-radius:12px;padding:18px;margin:12px 0;box-shadow:0 1px 2px rgba(0,0,0,.04),0 4px 12px rgba(0,0,0,.04);" aria-labelledby="manage-title">
-      <h2 id="manage-title" style="margin:0 0 8px;color:#0b3b58;">Manage data</h2>
-      <div style="display:flex;gap:8px;flex-wrap:wrap;">
-        <button id="export-json" style="background:#eef7ff;color:#046f95;border:none;padding:10px 14px;border-radius:8px;cursor:pointer;">Export JSON</button>
-        <label style="display:inline-flex;align-items:center;gap:8px;background:#eef7ff;color:#046f95;border:none;padding:10px 14px;border-radius:8px;cursor:pointer;">
-          Import JSON
-          <input id="import-json" type="file" accept="application/json" hidden>
-        </label>
-        <button id="reset-all" style="background:#c71f23;color:#fff;border:none;padding:10px 14px;border-radius:8px;cursor:pointer;">Reset all</button>
-      </div>
-      <p style="color:#66788a;font-size:.95rem;margin:10px 0 0;">Data is stored locally in your browser using localStorage.</p>
-    </section>
+        <!-- Data management -->
+        <section style="background:#fff;border-radius:12px;padding:18px;margin:12px 0;box-shadow:0 1px 2px rgba(0,0,0,.04),0 4px 12px rgba(0,0,0,.04);" aria-labelledby="manage-title">
+            <h2 id="manage-title" style="margin:0 0 8px;color:#0b3b58;">Manage data</h2>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                <button id="export-json" style="background:#eef7ff;color:#046f95;border:none;padding:10px 14px;border-radius:8px;cursor:pointer;">Export JSON</button>
+                <label style="display:inline-flex;align-items:center;gap:8px;background:#eef7ff;color:#046f95;border:none;padding:10px 14px;border-radius:8px;cursor:pointer;">
+                Import JSON
+                <input id="import-json" type="file" accept="application/json" hidden>
+                </label>
+                <button id="reset-all" style="background:#c71f23;color:#fff;border:none;padding:10px 14px;border-radius:8px;cursor:pointer;">Reset all</button>
+            </div>
+            <p style="color:#66788a;font-size:.95rem;margin:10px 0 0;">Data is stored locally in your browser using localStorage.</p>
+        </section>
 
-    <footer style="color:#66788a;font-size:.95rem;margin:10px 0 0;">Built with HTML, CSS and JavaScript. No server required.</footer>
-  </main>
+        <footer style="color:#66788a;font-size:.95rem;margin:10px 0 0;">Built with HTML, CSS and JavaScript. No server required.</footer>
+    </main>
 
-  <script src="app.js" defer></script>
+    <script src="app.js" defer></script>
 
 </body>
 </html>
